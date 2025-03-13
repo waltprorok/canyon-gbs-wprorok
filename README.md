@@ -46,3 +46,9 @@ You can now access the server at http://localhost:8000
 ## Database seeding
 
     php artisan db:seed
+
+## Log into Admin Panel
+
+    URL: http://127.0.0.1:8000/admin/login
+    User: admin@domain.com
+    Password: password!
