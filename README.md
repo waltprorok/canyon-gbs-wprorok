@@ -2,6 +2,8 @@
 
     PHP 8.2
     Composer version 2
+    Node.js version v18.20.7
+    npm version 10.8.2
 
 ## Getting started
 
@@ -17,6 +19,7 @@ Install all the dependencies using composer
 
     composer install
 
+
 Copy the example env file and make the required configuration changes in the .env file
 
     cp .env.example .env
@@ -24,6 +27,11 @@ Copy the example env file and make the required configuration changes in the .en
 Generate a new application key
 
     php artisan key:generate
+
+Install and build node dependencies
+
+    npm install
+    npm run build
 
 Run the database migrations (**Set the database connection in .env before migrating**)
 
