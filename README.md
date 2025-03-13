@@ -37,15 +37,19 @@ Run the database migrations (**Set the database connection in .env before migrat
 
     php artisan migrate
 
+Database seeding
+
+    php artisan db:seed
+
+Install Filament Dependency 
+
+    php artisan filament:install --panels
+
 Start the local development server
 
     php artisan serve
 
 You can now access the server at http://localhost:8000
-
-## Database seeding
-
-    php artisan db:seed
 
 ## Log into Admin Panel
 
