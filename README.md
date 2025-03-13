@@ -1,3 +1,8 @@
+## Requirements
+
+    PHP 8.2
+    Composer version 2
+
 ## Getting started
 
 Clone the repository
