@@ -1,9 +1,9 @@
 ## Requirements
 
     PHP 8.2
-    Composer version 2
-    Node.js version v18.20.7
-    npm version 10.8.2
+    Composer 2
+    Node.js v18.20.7
+    npm v10.8.2
 
 ## Getting started
 
