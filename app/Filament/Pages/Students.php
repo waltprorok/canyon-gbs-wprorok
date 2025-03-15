@@ -25,7 +25,8 @@ class Students extends Page implements HasTable
             ->query(Student::query())
             ->columns([
                 TextColumn::make('name')
-                    ->searchable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('email')
                     ->searchable(),
                 TextColumn::make('bio')
