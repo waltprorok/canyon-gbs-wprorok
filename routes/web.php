@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'welcome')->name('home');
 
-Route::get('/students', Students::class)->name('students');
+Route::get('students', Students::class)->name('students');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)

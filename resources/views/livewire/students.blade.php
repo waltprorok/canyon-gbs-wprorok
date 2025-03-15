@@ -3,7 +3,7 @@
 
 @section('content')
     <div>
-        <h3 class="block text font-bold text-black mb-6">Students</h3>
+        <h3 class="block text font-bold text-gray-500 mb-6">Students</h3>
 
         <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-100 dark:text-gray-400">
@@ -17,7 +17,7 @@
             </thead>
             <tbody>
             @foreach($students as $student)
-                <tr class="bg-white border-b border-gray-200">
+                <tr class="bg-white border-b border-gray-200" wire:key="{{ $student->id }}">
                     <td class="px-6 py-4">Need Img</td>
                     <td class="px-6 py-4">{{ $student->name }}</td>
                     <td class="px-6 py-4">{{ $student->email }}</td>
@@ -29,6 +29,8 @@
             @endforeach
             </tbody>
         </table>
-    </div>
 
+        <br />
+        {{ $students->links('pagination::default') }}
+    </div>
 @endsection
