@@ -2,10 +2,11 @@
 
 namespace App\Filament\Pages;
 
-use App\Models\Advisor;
+
 use App\Models\Student;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\EditAction;
 use Filament\Pages\Page;
@@ -15,6 +16,7 @@ use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
+use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 
 class Students extends Page implements HasTable
 {
@@ -43,10 +45,12 @@ class Students extends Page implements HasTable
                             ->required()
                             ->maxLength(255),
                         DatePicker::make('date_of_birth')
-                            ->required()
+                            ->required(),
+                        SpatieMediaLibraryFileUpload::make('avatar')
                     ]),
             ])
             ->columns([
+                SpatieMediaLibraryImageColumn::make('avatar'),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
@@ -73,6 +77,7 @@ class Students extends Page implements HasTable
                         TextInput::make('date_of_birth')
                             ->required()
                             ->maxLength(20),
+                        SpatieMediaLibraryFileUpload::make('avatar'),
                     ]),
                 EditAction::make()
                     ->form([
@@ -85,6 +90,7 @@ class Students extends Page implements HasTable
                         TextInput::make('bio')
                             ->required()
                             ->maxLength(180),
+                        SpatieMediaLibraryFileUpload::make('avatar'),
                     ]),
                 DeleteAction::make(),
             ])
