@@ -35,7 +35,20 @@ class Student extends Model implements HasMedia
     public function courses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'student_course',
-        'student_id', 'course_id');
+            'student_id', 'course_id');
+    }
+
+    public function getImageAttribute(): string
+    {
+        $image = $this->getMedia();
+
+        if ($image->isNotEmpty()) {
+            foreach($image as $img) {
+                return url('/storage/' . $img->id . '/' . $img->file_name);
+            }
+        }
+
+        return url('/storage/avatar.jpeg');
     }
 
     public function registerMediaConversions(?Media $media = null): void
