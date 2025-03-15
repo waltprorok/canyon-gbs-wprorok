@@ -23,6 +23,10 @@ Install all the dependencies using composer
 Copy the example env file and make the required configuration changes in the .env file
 
     cp .env.example .env
+ 
+Set key and value in env file
+
+    APP_URL=http://127.0.0.1:8000
 
 Generate a new application key
 

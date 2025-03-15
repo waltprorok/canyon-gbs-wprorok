@@ -50,7 +50,8 @@ class Students extends Page implements HasTable
                     ]),
             ])
             ->columns([
-                SpatieMediaLibraryImageColumn::make('avatar'),
+                SpatieMediaLibraryImageColumn::make('avatar')
+                    ->conversion('thumb'),
                 TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
