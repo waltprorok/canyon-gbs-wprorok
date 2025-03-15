@@ -25,6 +25,7 @@ class Courses extends Page implements HasTable
             ->query(Course::query())
             ->columns([
                 TextColumn::make('name'),
+                TextColumn::make('advisors.name')
             ])
             ->filters([])
             ->actions([])

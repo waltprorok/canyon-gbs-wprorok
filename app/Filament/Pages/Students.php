@@ -26,8 +26,10 @@ class Students extends Page implements HasTable
             ->columns([
                 TextColumn::make('name'),
                 TextColumn::make('email'),
-                TextColumn::make('bio'),
+                TextColumn::make('bio')
+                    ->limit(50),
                 TextColumn::make('date_of_birth'),
+                TextColumn::make('courses.advisors.name')
             ])
             ->filters([])
             ->actions([])
