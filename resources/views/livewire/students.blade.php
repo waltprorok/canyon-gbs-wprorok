@@ -4,7 +4,6 @@
 @section('content')
     <div>
         <h3 class="block text font-bold text-gray-500 mb-6">Students</h3>
-
         <table class="table w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-500">
             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-100 dark:text-gray-400">
             <tr>
@@ -32,8 +31,6 @@
             @endforeach
             </tbody>
         </table>
-
-
         {{ $students->links('pagination::default') }}
     </div>
 @endsection

@@ -3,8 +3,10 @@
 namespace App\Filament\Pages;
 
 
+use App\Models\Advisor;
 use App\Models\Student;
 use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Actions\CreateAction;
@@ -47,6 +49,11 @@ class Students extends Page implements HasTable
                             ->maxLength(255),
                         DatePicker::make('date_of_birth')
                             ->required(),
+                        Select::make('advisor_id')
+                            ->label('Advisor')
+                            ->relationship(name: 'courses', titleAttribute: 'name')
+                            ->options(Advisor::all()->pluck('name', 'id'))
+                            ->searchable(),
                         SpatieMediaLibraryFileUpload::make('avatar')
                     ]),
             ])
@@ -58,9 +65,9 @@ class Students extends Page implements HasTable
                     ->sortable(),
                 TextColumn::make('email')
                     ->searchable(),
-                TextColumn::make('bio')
-                    ->limit(40),
                 TextColumn::make('date_of_birth'),
+//                TextColumn::make('bio')
+//                    ->limit(30),
                 TextColumn::make('courses.advisors.name'),
             ])
             ->filters([])
@@ -92,6 +99,11 @@ class Students extends Page implements HasTable
                         TextInput::make('bio')
                             ->required()
                             ->maxLength(180),
+                        Select::make('advisor_id')
+                            ->label('Advisor')
+                            ->relationship(name: 'courses', titleAttribute: 'name')
+                            ->options(Advisor::all()->pluck('name', 'id'))
+                            ->searchable(),
                         SpatieMediaLibraryFileUpload::make('avatar'),
                     ]),
                 DeleteAction::make(),

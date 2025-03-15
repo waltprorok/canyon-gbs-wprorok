@@ -4,6 +4,7 @@ namespace App\Filament\Pages;
 
 use App\Models\Advisor;
 use App\Models\Course;
+use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\Page;
 use Filament\Tables\Actions\CreateAction;
@@ -36,6 +37,11 @@ class Courses extends Page implements HasTable
                         TextInput::make('name')
                             ->required()
                             ->maxLength(100),
+                        Select::make('advisor_id')
+                            ->label('Advisor')
+                            ->relationship(name: 'advisors', titleAttribute: 'name')
+                            ->options(Advisor::all()->pluck('name', 'id'))
+                            ->searchable()
                     ]),
             ])
             ->columns([
@@ -57,6 +63,11 @@ class Courses extends Page implements HasTable
                         TextInput::make('name')
                             ->required()
                             ->maxLength(100),
+                        Select::make('advisor_id')
+                            ->label('Advisor')
+                            ->relationship(name: 'advisors', titleAttribute: 'name')
+                            ->options(Advisor::all()->pluck('name', 'id'))
+                            ->searchable()
                     ]),
                 DeleteAction::make(),
             ])
