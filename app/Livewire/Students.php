@@ -13,7 +13,7 @@ class Students extends Component
     public function render()
     {
         return view('livewire.students', [
-            'students' => Student::paginate(5),
+            'students' => Student::paginate(10),
         ])->layout('layouts.app');
     }
 }

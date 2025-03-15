@@ -48,7 +48,7 @@ class Student extends Model implements HasMedia
             }
         }
 
-        return url('/storage/avatar.jpeg');
+        return url('/img/blank_avatar.png');
     }
 
     public function registerMediaConversions(?Media $media = null): void
