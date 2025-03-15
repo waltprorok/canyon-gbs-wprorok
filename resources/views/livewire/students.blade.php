@@ -30,7 +30,7 @@
             </tbody>
         </table>
 
-        <br />
+
         {{ $students->links('pagination::default') }}
     </div>
 @endsection
