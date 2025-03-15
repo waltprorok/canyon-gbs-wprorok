@@ -24,10 +24,12 @@ class Students extends Page implements HasTable
         return $table
             ->query(Student::query())
             ->columns([
-                TextColumn::make('name'),
-                TextColumn::make('email'),
+                TextColumn::make('name')
+                    ->searchable(),
+                TextColumn::make('email')
+                    ->searchable(),
                 TextColumn::make('bio')
-                    ->limit(50),
+                    ->limit(40),
                 TextColumn::make('date_of_birth'),
                 TextColumn::make('courses.advisors.name')
             ])

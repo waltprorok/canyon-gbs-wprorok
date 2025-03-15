@@ -24,8 +24,10 @@ class Advisors extends Page implements HasTable
         return $table
             ->query(Advisor::query())
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                    ->searchable(),
                 TextColumn::make('email')
+                    ->searchable()
             ])
             ->filters([])
             ->actions([])

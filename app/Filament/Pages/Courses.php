@@ -24,7 +24,8 @@ class Courses extends Page implements HasTable
         return $table
             ->query(Course::query())
             ->columns([
-                TextColumn::make('name'),
+                TextColumn::make('name')
+                    ->searchable(),
                 TextColumn::make('advisors.name')
             ])
             ->filters([])
