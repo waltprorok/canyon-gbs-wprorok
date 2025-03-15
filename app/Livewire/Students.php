@@ -10,14 +10,11 @@ class Students extends Component
 {
     use WithPagination;
 
-//    public $students;
 
     public function render()
     {
-//        $this->students = Student::all();
-
         return view('livewire.students', [
-            'students' => Student::paginate(5)->withQueryString(),
+            'students' => Student::paginate(5),
         ])->layout('layouts.app');
     }
 }
