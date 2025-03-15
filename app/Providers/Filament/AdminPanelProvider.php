@@ -53,20 +53,6 @@ class AdminPanelProvider extends PanelProvider
                 DisableBladeIconComponents::class,
                 DispatchServingFilamentEvent::class,
             ])
-            ->navigationItems([
-                NavigationItem::make('Advisors')
-                    ->url(fn () => '/')
-                ->icon('heroicon-o-users')
-                ->sort(2),
-                NavigationItem::make('Courses')
-                    ->url(fn () => '/')
-                    ->icon('heroicon-o-beaker')
-                    ->sort(3),
-                NavigationItem::make('Students')
-                    ->url(fn () => '/')
-                    ->icon('heroicon-o-academic-cap')
-                    ->sort(4)
-            ])
             ->authMiddleware([
                 Authenticate::class,
             ]);
