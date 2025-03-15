@@ -32,6 +32,11 @@ Generate a new application key
 
     php artisan key:generate
 
+Create the symlink for media
+
+    php artisan storage:link
+
+
 Install and build node dependencies
 
     npm install

@@ -31,6 +31,7 @@ class Courses extends Page implements HasTable
             ->query(Course::query())
             ->headerActions([
                 CreateAction::make()
+                    ->model(Course::class)
                     ->form([
                         TextInput::make('name')
                             ->required()
@@ -45,13 +46,6 @@ class Courses extends Page implements HasTable
             ])
             ->filters([])
             ->actions([
-                CreateAction::make()
-                    ->model(Course::class)
-                    ->form([
-                        TextInput::make('name')
-                            ->required()
-                            ->maxLength(100),
-                    ]),
                 ViewAction::make()
                     ->form([
                         TextInput::make('name')

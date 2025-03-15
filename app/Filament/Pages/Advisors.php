@@ -30,6 +30,7 @@ class Advisors extends Page implements HasTable
             ->query(Advisor::query())
             ->headerActions([
                 CreateAction::make()
+                    ->model(Advisor::class)
                     ->form([
                         TextInput::make('name')
                             ->required()

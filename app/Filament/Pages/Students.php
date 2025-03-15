@@ -34,6 +34,7 @@ class Students extends Page implements HasTable
             ->query(Student::query())
             ->headerActions([
                 CreateAction::make()
+                    ->model(Student::class)
                     ->form([
                         TextInput::make('name')
                             ->required()
