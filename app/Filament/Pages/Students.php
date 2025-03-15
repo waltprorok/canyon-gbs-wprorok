@@ -3,7 +3,10 @@
 namespace App\Filament\Pages;
 
 use App\Models\Student;
+use Filament\Forms\Components\TextInput;
+use Filament\Tables\Actions\EditAction;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -32,10 +35,24 @@ class Students extends Page implements HasTable
                 TextColumn::make('bio')
                     ->limit(40),
                 TextColumn::make('date_of_birth'),
-                TextColumn::make('courses.advisors.name')
+                TextColumn::make('courses.advisors.name'),
             ])
             ->filters([])
-            ->actions([])
+            ->actions([
+                EditAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(50),
+                        TextInput::make('email')
+                            ->required()
+                            ->maxLength(50),
+                        TextInput::make('bio')
+                            ->required()
+                            ->maxLength(180),
+                    ]),
+                DeleteAction::make(),
+            ])
             ->bulkActions([]);
     }
 }

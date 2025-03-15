@@ -3,7 +3,10 @@
 namespace App\Filament\Pages;
 
 use App\Models\Course;
+use Filament\Forms\Components\TextInput;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -30,7 +33,15 @@ class Courses extends Page implements HasTable
                 TextColumn::make('advisors.name')
             ])
             ->filters([])
-            ->actions([])
+            ->actions([
+                EditAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(100),
+                    ]),
+                DeleteAction::make(),
+            ])
             ->bulkActions([]);
     }
 }
