@@ -2,11 +2,14 @@
 
 namespace App\Filament\Pages;
 
+use App\Models\Advisor;
 use App\Models\Course;
 use Filament\Forms\Components\TextInput;
 use Filament\Pages\Page;
+use Filament\Tables\Actions\CreateAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
@@ -34,6 +37,19 @@ class Courses extends Page implements HasTable
             ])
             ->filters([])
             ->actions([
+                CreateAction::make()
+                    ->model(Advisor::class)
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(50),
+                    ]),
+                ViewAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                    ]),
                 EditAction::make()
                     ->form([
                         TextInput::make('name')
