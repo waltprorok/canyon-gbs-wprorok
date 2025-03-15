@@ -28,6 +28,17 @@ class Advisors extends Page implements HasTable
     {
         return $table
             ->query(Advisor::query())
+            ->headerActions([
+                CreateAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(50),
+                        TextInput::make('email')
+                            ->required()
+                            ->maxLength(75),
+                    ]),
+            ])
             ->columns([
                 TextColumn::make('name')
                     ->searchable()
@@ -37,16 +48,6 @@ class Advisors extends Page implements HasTable
             ])
             ->filters([])
             ->actions([
-                CreateAction::make()
-                    ->model(Advisor::class)
-                    ->form([
-                        TextInput::make('name')
-                            ->required()
-                            ->maxLength(50),
-                        TextInput::make('email')
-                            ->required()
-                            ->maxLength(75),
-                    ]),
                 ViewAction::make()
                     ->form([
                         TextInput::make('name')

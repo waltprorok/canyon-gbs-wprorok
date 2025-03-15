@@ -29,6 +29,14 @@ class Courses extends Page implements HasTable
     {
         return $table
             ->query(Course::query())
+            ->headerActions([
+                CreateAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(100),
+                    ]),
+            ])
             ->columns([
                 TextColumn::make('name')
                     ->searchable()
@@ -38,11 +46,11 @@ class Courses extends Page implements HasTable
             ->filters([])
             ->actions([
                 CreateAction::make()
-                    ->model(Advisor::class)
+                    ->model(Course::class)
                     ->form([
                         TextInput::make('name')
                             ->required()
-                            ->maxLength(50),
+                            ->maxLength(100),
                     ]),
                 ViewAction::make()
                     ->form([

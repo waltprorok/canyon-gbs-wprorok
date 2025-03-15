@@ -30,6 +30,22 @@ class Students extends Page implements HasTable
     {
         return $table
             ->query(Student::query())
+            ->headerActions([
+                CreateAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(50),
+                        TextInput::make('email')
+                            ->required()
+                            ->maxLength(75),
+                        TextInput::make('bio')
+                            ->required()
+                            ->maxLength(255),
+                        DatePicker::make('date_of_birth')
+                            ->required()
+                    ]),
+            ])
             ->columns([
                 TextColumn::make('name')
                     ->searchable()
@@ -43,22 +59,6 @@ class Students extends Page implements HasTable
             ])
             ->filters([])
             ->actions([
-                CreateAction::make()
-                    ->model(Advisor::class)
-                    ->form([
-                        TextInput::make('name')
-                            ->required()
-                            ->maxLength(50),
-                        TextInput::make('email')
-                            ->required()
-                            ->maxLength(75),
-                        TextInput::make('bio')
-                            ->required()
-                            ->maxLength(255),
-                        DatePicker::make('date_of_birth')
-                            ->required()
-
-                    ]),
                 ViewAction::make()
                     ->form([
                         TextInput::make('name')
