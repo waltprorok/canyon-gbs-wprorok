@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use App\Models\Course;
-use App\Models\Student;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Concerns\InteractsWithTable;
@@ -14,7 +13,7 @@ class Courses extends Page implements HasTable
 {
     use InteractsWithTable;
 
-    protected static ?string $model = Student::class;
+    protected static ?string $model = Course::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-beaker';
 

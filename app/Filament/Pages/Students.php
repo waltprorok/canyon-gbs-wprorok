@@ -2,7 +2,6 @@
 
 namespace App\Filament\Pages;
 
-use App\Models\Advisor;
 use App\Models\Student;
 use Filament\Pages\Page;
 use Filament\Tables\Columns\TextColumn;
