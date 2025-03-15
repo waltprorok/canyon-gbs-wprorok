@@ -10,7 +10,6 @@ class Students extends Component
 {
     use WithPagination;
 
-
     public function render()
     {
         return view('livewire.students', [
