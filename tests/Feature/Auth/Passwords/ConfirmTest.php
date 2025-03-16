@@ -22,8 +22,7 @@ class ConfirmTest extends TestCase
         })->middleware(['web', 'password.confirm']);
     }
 
-    /** @test */
-    public function a_user_must_confirm_their_password_before_visiting_a_protected_page()
+    public function test_a_user_must_confirm_their_password_before_visiting_a_protected_page()
     {
         $user = User::factory()->create();
         $this->be($user);
@@ -36,16 +35,14 @@ class ConfirmTest extends TestCase
             ->assertSeeLivewire('auth.passwords.confirm');
     }
 
-    /** @test */
-    public function a_user_must_enter_a_password_to_confirm_it()
+    public function test_a_user_must_enter_a_password_to_confirm_it()
     {
         Livewire::test('auth.passwords.confirm')
             ->call('confirm')
             ->assertHasErrors(['password' => 'required']);
     }
 
-    /** @test */
-    public function a_user_must_enter_their_own_password_to_confirm_it()
+    public function test_a_user_must_enter_their_own_password_to_confirm_it()
     {
         $user = User::factory()->create([
             'password' => Hash::make('password'),
@@ -57,8 +54,7 @@ class ConfirmTest extends TestCase
             ->assertHasErrors(['password' => 'current_password']);
     }
 
-    /** @test */
-    public function a_user_who_confirms_their_password_will_get_redirected()
+    public function test_a_user_who_confirms_their_password_will_get_redirected()
     {
         $user = User::factory()->create([
             'password' => Hash::make('password'),

@@ -15,8 +15,7 @@ class VerifyTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function can_view_verification_page()
+    public function test_can_view_verification_page()
     {
         $user = User::factory()->create([
             'email_verified_at' => null,
@@ -29,8 +28,7 @@ class VerifyTest extends TestCase
             ->assertSeeLivewire('auth.verify');
     }
 
-    /** @test */
-    public function can_resend_verification_email()
+    public function test_can_resend_verification_email()
     {
         $user = User::factory()->create();
 
@@ -41,8 +39,7 @@ class VerifyTest extends TestCase
             ->assertDispatched('resent');
     }
 
-    /** @test */
-    public function can_verify()
+    public function test_can_verify()
     {
         $user = User::factory()->create([
             'email_verified_at' => null,

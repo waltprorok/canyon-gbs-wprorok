@@ -16,8 +16,7 @@ class ResetTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
-    public function can_view_password_reset_page()
+    public function test_can_view_password_reset_page()
     {
         $user = User::factory()->create();
 
@@ -38,8 +37,7 @@ class ResetTest extends TestCase
             ->assertSeeLivewire('auth.passwords.reset');
     }
 
-    /** @test */
-    public function can_reset_password()
+    public function test_can_reset_password()
     {
         $user = User::factory()->create();
 
@@ -65,8 +63,7 @@ class ResetTest extends TestCase
         ]));
     }
 
-    /** @test */
-    public function token_is_required()
+    public function test_token_is_required()
     {
         Livewire::test('auth.passwords.reset', [
             'token' => null,
@@ -75,8 +72,7 @@ class ResetTest extends TestCase
             ->assertHasErrors(['token' => 'required']);
     }
 
-    /** @test */
-    public function email_is_required()
+    public function test_email_is_required()
     {
         Livewire::test('auth.passwords.reset', [
             'token' => Str::random(16),
@@ -86,8 +82,7 @@ class ResetTest extends TestCase
             ->assertHasErrors(['email' => 'required']);
     }
 
-    /** @test */
-    public function email_is_valid_email()
+    public function test_email_is_valid_email()
     {
         Livewire::test('auth.passwords.reset', [
             'token' => Str::random(16),
@@ -97,8 +92,7 @@ class ResetTest extends TestCase
             ->assertHasErrors(['email' => 'email']);
     }
 
-    /** @test */
-    function password_is_required()
+    function test_password_is_required()
     {
         Livewire::test('auth.passwords.reset', [
             'token' => Str::random(16),
@@ -108,8 +102,7 @@ class ResetTest extends TestCase
             ->assertHasErrors(['password' => 'required']);
     }
 
-    /** @test */
-    function password_is_minimum_of_eight_characters()
+    function test_password_is_minimum_of_eight_characters()
     {
         Livewire::test('auth.passwords.reset', [
             'token' => Str::random(16),
@@ -119,8 +112,7 @@ class ResetTest extends TestCase
             ->assertHasErrors(['password' => 'min']);
     }
 
-    /** @test */
-    function password_matches_password_confirmation()
+    function test_password_matches_password_confirmation()
     {
         Livewire::test('auth.passwords.reset', [
             'token' => Str::random(16),
