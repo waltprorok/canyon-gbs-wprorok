@@ -15,7 +15,7 @@ class Advisor extends Model
         'email'
     ];
 
-    public function courses(): BelongsToMany
+    public function advisorCourses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'advisor_course',
             'advisor_id', 'course_id');

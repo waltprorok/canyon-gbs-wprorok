@@ -47,6 +47,7 @@ class Advisors extends Page implements HasTable
                 TextColumn::make('email')
                     ->searchable()
             ])
+            ->defaultSort('name')
             ->filters([])
             ->actions([
                 ViewAction::make()

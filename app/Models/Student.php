@@ -32,7 +32,17 @@ class Student extends Model implements HasMedia
         return $this->belongsToMany(Advisor::class);
     }
 
+    public function course(): HasOne
+    {
+        return $this->hasOne(Course::class);
+    }
+
     public function courses(): BelongsToMany
+    {
+        return $this->belongsToMany(Course::class);
+    }
+
+    public function studentCourses(): BelongsToMany
     {
         return $this->belongsToMany(Course::class, 'student_course',
             'student_id', 'course_id');

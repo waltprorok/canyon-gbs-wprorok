@@ -4,9 +4,11 @@ namespace App\Filament\Pages;
 
 
 use App\Models\Advisor;
+use App\Models\Course;
 use App\Models\Student;
 use Filament\Forms\Components\DatePicker;
 use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Tables\Actions\CreateAction;
@@ -44,15 +46,16 @@ class Students extends Page implements HasTable
                         TextInput::make('email')
                             ->required()
                             ->maxLength(75),
-                        TextInput::make('bio')
+                        Textarea::make('bio')
                             ->required()
                             ->maxLength(255),
                         DatePicker::make('date_of_birth')
                             ->required(),
-                        Select::make('advisor_id')
-                            ->label('Advisor')
-                            ->relationship(name: 'courses', titleAttribute: 'name')
-                            ->options(Advisor::all()->pluck('name', 'id'))
+                        Select::make('course_id')
+                            ->label('Course')
+                            ->multiple()
+                            ->relationship(name: 'studentCourses', titleAttribute: 'name')
+                            ->options(Course::all()->pluck('name', 'id'))
                             ->searchable(),
                         SpatieMediaLibraryFileUpload::make('avatar')
                     ]),
@@ -66,10 +69,10 @@ class Students extends Page implements HasTable
                 TextColumn::make('email')
                     ->searchable(),
                 TextColumn::make('date_of_birth'),
-//                TextColumn::make('bio')
-//                    ->limit(30),
-                TextColumn::make('courses.advisors.name'),
+                TextColumn::make('studentCourses.advisors.name'),
+                TextColumn::make('studentCourses.name'),
             ])
+            ->defaultSort('name')
             ->filters([])
             ->actions([
                 ViewAction::make()
@@ -80,12 +83,17 @@ class Students extends Page implements HasTable
                         TextInput::make('email')
                             ->required()
                             ->maxLength(75),
-                        TextInput::make('bio')
+                        Textarea::make('bio')
                             ->required()
                             ->maxLength(255),
                         TextInput::make('date_of_birth')
                             ->required()
                             ->maxLength(20),
+                        Select::make('course_id')
+                            ->label('Course')
+                            ->multiple()
+                            ->relationship(name: 'studentCourses', titleAttribute: 'name')
+                            ->options(Course::all()->pluck('name', 'id')),
                         SpatieMediaLibraryFileUpload::make('avatar'),
                     ]),
                 EditAction::make()
@@ -99,10 +107,11 @@ class Students extends Page implements HasTable
                         TextInput::make('bio')
                             ->required()
                             ->maxLength(180),
-                        Select::make('advisor_id')
-                            ->label('Advisor')
-                            ->relationship(name: 'courses', titleAttribute: 'name')
-                            ->options(Advisor::all()->pluck('name', 'id'))
+                        Select::make('course_id')
+                            ->label('Course')
+                            ->multiple()
+                            ->relationship(name: 'studentCourses', titleAttribute: 'name')
+                            ->options(Course::all()->pluck('name', 'id'))
                             ->searchable(),
                         SpatieMediaLibraryFileUpload::make('avatar'),
                     ]),

@@ -50,6 +50,7 @@ class Courses extends Page implements HasTable
                     ->sortable(),
                 TextColumn::make('advisors.name')
             ])
+            ->defaultSort('name')
             ->filters([])
             ->actions([
                 ViewAction::make()
@@ -57,6 +58,10 @@ class Courses extends Page implements HasTable
                         TextInput::make('name')
                             ->required()
                             ->maxLength(255),
+                        Select::make('advisor_id')
+                            ->label('Advisor')
+                            ->relationship(name: 'advisors', titleAttribute: 'name')
+                            ->options(Advisor::all()->pluck('name', 'id'))
                     ]),
                 EditAction::make()
                     ->form([
