@@ -42,4 +42,32 @@ class AdvisorTest extends TestCase
         $this->assertEquals($factory->name, $advisor->name);
         $this->assertEquals($factory->email, $advisor->email);
     }
+
+    public function test_can_edit_advisor()
+    {
+        $this->actingAs($this->user);
+
+        $factory = Advisor::factory()->create();
+
+        $factory->update([
+            'name' => 'New Advisor'
+        ]);
+
+        $advisor = Advisor::first();
+
+        $this->assertEquals('New Advisor', $advisor->name);
+    }
+
+    public function test_can_delete_advisor()
+    {
+        $this->actingAs($this->user);
+
+        Advisor::factory()->create();
+
+        $advisor = Advisor::first();
+
+        $advisor->delete();
+
+        $this->assertDatabaseCount('advisors', 0);
+    }
 }

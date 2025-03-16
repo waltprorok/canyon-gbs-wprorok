@@ -44,4 +44,38 @@ class StudentTest extends TestCase
         $this->assertEquals($factory->bio, $course->bio);
         $this->assertEquals($factory->date_of_birth, $course->date_of_birth);
     }
+
+    public function test_can_edit_student()
+    {
+        $this->actingAs($this->user);
+
+        $factory = Student::factory()->create();
+
+        $factory->update([
+            'name' => 'New Student',
+            'email' => 'new_student@example',
+            'bio' => 'Updated bio',
+            'date_of_birth' => '2007-05-10',
+        ]);
+
+        $student = Student::first();
+
+        $this->assertEquals('New Student', $student->name);
+        $this->assertEquals('new_student@example', $student->email);
+        $this->assertEquals('Updated bio', $student->bio);
+        $this->assertEquals('2007-05-10', $student->date_of_birth);
+    }
+
+    public function test_can_delete_student()
+    {
+        $this->actingAs($this->user);
+
+        Student::factory()->create();
+
+        $student = Student::first();
+
+        $student->delete();
+
+        $this->assertDatabaseCount('students', 0);
+    }
 }
