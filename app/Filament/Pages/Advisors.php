@@ -47,8 +47,6 @@ class Advisors extends Page implements HasTable
                 TextColumn::make('email')
                     ->searchable()
             ])
-            ->defaultSort('name')
-            ->filters([])
             ->actions([
                 ViewAction::make()
                     ->form([
@@ -70,6 +68,9 @@ class Advisors extends Page implements HasTable
                     ]),
                 DeleteAction::make(),
             ])
+            ->paginated()
+            ->defaultSort('name')
+            ->filters([])
             ->bulkActions([]);
     }
 }
