@@ -1,0 +1,76 @@
+<?php
+
+namespace App\Filament\Pages;
+
+use App\Models\Advisor;
+use Filament\Forms\Components\TextInput;
+use Filament\Pages\Page;
+use Filament\Tables\Actions\CreateAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\ViewAction;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Concerns\InteractsWithTable;
+use Filament\Tables\Contracts\HasTable;
+use Filament\Tables\Table;
+
+class Advisors extends Page implements HasTable
+{
+    use InteractsWithTable;
+
+    protected static ?string $model = Advisor::class;
+
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+
+    protected static string $view = 'filament.pages.advisors';
+
+    public function table(Table $table): Table
+    {
+        return $table
+            ->query(Advisor::query())
+            ->headerActions([
+                CreateAction::make()
+                    ->model(Advisor::class)
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(50),
+                        TextInput::make('email')
+                            ->required()
+                            ->maxLength(75),
+                    ]),
+            ])
+            ->columns([
+                TextColumn::make('name')
+                    ->searchable()
+                    ->sortable(),
+                TextColumn::make('email')
+                    ->searchable()
+            ])
+            ->actions([
+                ViewAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(50),
+                        TextInput::make('email')
+                            ->required()
+                            ->maxLength(75),
+                    ]),
+                EditAction::make()
+                    ->form([
+                        TextInput::make('name')
+                            ->required()
+                            ->maxLength(50),
+                        TextInput::make('email')
+                            ->required()
+                            ->maxLength(50),
+                    ]),
+                DeleteAction::make(),
+            ])
+            ->paginated()
+            ->defaultSort('name')
+            ->filters([])
+            ->bulkActions([]);
+    }
+}
